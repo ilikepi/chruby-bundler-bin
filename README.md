@@ -1,6 +1,6 @@
 # chruby-bundler-bin
 
-Plugin for [chruby](https://github.com/postmodern/chruby) for automatically
+Addon for [chruby](https://github.com/postmodern/chruby) for automatically
 adding Bundler.bin_path to `PATH`.
 
 The primary goal of this script is to add each entry in Bundler.bin_path entry
