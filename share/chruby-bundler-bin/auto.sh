@@ -1,4 +1,7 @@
 
+function chruby_bundler_bin_preexec() {
+}
+
 function auto_bundler_bin_path_reset() {
 	if [[ -n "$RUBY_AUTO_BUNDLER_BIN" ]]; then
 		PATH=":$PATH:"
@@ -28,3 +31,10 @@ EOF
 	fi
 }
 
+if [[ -n "$ZSH_VERSION" ]]; then
+  if [[ ! "$preexec_functions" == *chruby_bundler_bin_preexec* ]]; then
+    preexec_functions+=("chruby_bundler_bin_preexec")
+  fi
+elif [[ -n "$BASH_VERSION" ]]; then
+  trap '[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]] && chruby_bundler_bin_preexec' DEBUG
+fi
