@@ -1,5 +1,9 @@
 
 function chruby_bundler_bin_preexec() {
+  if [[ "$AUTO_BUNDLER_BIN_RUN_CHRUBY_AUTO" == yes ]]; then
+    chruby_auto
+  fi
+
   # $RUBY_ROOT is set by chruby_use().
   if [[ -n "$RUBY_ROOT" ]]; then
     auto_bundler_bin_path
@@ -43,5 +47,13 @@ if [[ -n "$ZSH_VERSION" ]]; then
     preexec_functions+=("chruby_bundler_bin_preexec")
   fi
 elif [[ -n "$BASH_VERSION" ]]; then
+  # Only one trap function can be set for a given signal, and by default we
+  # cannot query whether one is set for the calling shell.  Given this, if
+  # chruby_auto() exists, assume it is configured for the DEBUG trap, which
+  # we're about to replace with our own function.
+  if declare -f chruby_auto > /dev/null; then
+    export AUTO_BUNDLER_BIN_RUN_CHRUBY_AUTO=yes
+  fi
+
   trap '[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]] && chruby_bundler_bin_preexec' DEBUG
 fi
