@@ -55,5 +55,8 @@ elif [[ -n "$BASH_VERSION" ]]; then
     export AUTO_BUNDLER_BIN_RUN_CHRUBY_AUTO=yes
   fi
 
+  # FIXME: It's actually not possible to overwrite an existing trap function
+  # in the calling show.  As a workaround, run `trap - DEBUG` before sourcing
+  # this script.
   trap '[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]] && chruby_bundler_bin_preexec' DEBUG
 fi
