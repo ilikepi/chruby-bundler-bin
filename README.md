@@ -1,9 +1,9 @@
 # chruby-bundler-bin
 
 Addon for [chruby](https://github.com/postmodern/chruby) for automatically
-adding Bundler.bin_path to `PATH`.
+adding `Bundler.bin_path` to `PATH`.
 
-The primary goal of this script is to add each entry in Bundler.bin_path entry
+The primary goal of this script is to add each entry in `Bundler.bin_path` entry
 to `$PATH` after chruby is automatically executed.
 
 ## Installation
@@ -13,18 +13,18 @@ file, add the following lines:
 
 ### For bash
 
-    ```sh
-    # required work-around for limitation of trap command
-    trap - DEBUG
+```sh
+# required work-around for limitation of trap command
+trap - DEBUG
 
-    source path/to/chruby-bundler-bin/auto.sh
-    ```
+source path/to/chruby-bundler-bin/auto.sh
+```
 
 ### For zsh
 
-    ```sh
-    source path/to/chruby-bundler-bin/auto.sh
-    ```
+```sh
+source path/to/chruby-bundler-bin/auto.sh
+```
 
 ## Known issues
 
