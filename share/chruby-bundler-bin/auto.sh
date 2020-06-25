@@ -1,5 +1,12 @@
 
 function chruby_bundler_bin_preexec() {
+  # $RUBY_ROOT is set by chruby_use().
+  if [[ -n "$RUBY_ROOT" ]]; then
+    auto_bundler_bin_path
+    hash -r
+  else
+    auto_bundler_bin_path_reset
+  fi
 }
 
 function auto_bundler_bin_path_reset() {
