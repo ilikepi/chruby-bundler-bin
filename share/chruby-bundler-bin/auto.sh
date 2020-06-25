@@ -1,3 +1,4 @@
+unset RUBY_AUTO_BUNDLER_BIN
 
 function chruby_bundler_bin_preexec() {
   if [[ "$AUTO_BUNDLER_BIN_RUN_CHRUBY_AUTO" == yes ]]; then
